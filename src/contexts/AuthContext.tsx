@@ -24,7 +24,7 @@ export function AuthContextProvider( props : AuthContextProviderProps ) {
   // when componet mount, it will listen if was auth already done
   useEffect(() => {
     //  event listener subscription secure end
-    const unsubscribe = auth.onAuthStateChanged(user => {
+    auth.onAuthStateChanged(user => {
       if(user) {
         const { displayName, photoURL, uid } = user;
         
@@ -43,9 +43,6 @@ export function AuthContextProvider( props : AuthContextProviderProps ) {
 
   async function signInWithGoogle() {
     const provider = new firebase.auth.GoogleAuthProvider();
-
-    // auth.signInWithPopup(provider).then( result => {
-    // });
     const result = await auth.signInWithPopup(provider);
 
     if(result.user) {
