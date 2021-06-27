@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { useHistory, useParams } from 'react-router-dom'
 
 import logoImg from '../assets/images/logo.svg'
@@ -9,9 +8,6 @@ import answerImg from '../assets/images/answer.svg'
 import { Button } from '../components/Button'
 import { Question } from '../components/Question'
 import { RoomCode } from '../components/RoomCode'
-
-import { useAuth } from '../hooks/useAuth'
-
 
 import '../styles/rooms.scss'
 import '../styles/question.scss'
@@ -24,12 +20,9 @@ type RoomParams = {
 }
 
 export function AdminRoom() {
-  const {user} = useAuth();
-
   const history = useHistory();
 
   const params = useParams<RoomParams>()
-  const  [newQuestion, setNewQuestion] = useState('')
   const roomId = params.id;
   
   const { title, questions } = useRoom(roomId)
